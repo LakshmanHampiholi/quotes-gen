@@ -1,0 +1,113 @@
+
+
+body {
+    font-family: 'japan', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #1e1e1e;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: #2e2e2e;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    width: 400px;
+    text-align: center;
+}
+
+.header {
+    /* background-color: #3a3a3a; */
+    color: #fff;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.quote-container {
+    position: relative;
+}
+
+.quote {
+    margin-top: 20px;
+    font-size: 18px;
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+.fade-in {
+    opacity: 1;
+}
+
+.copy-button,
+.get-quote-button {
+    padding: 10px 20px;
+    margin: 10px;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.copy-button {
+    background-color: #3a3a3a;
+    color: #fff;
+}
+
+.copy-button:hover {
+    background-color: #4e4e4e;
+    color: #fff;
+}
+
+.get-quote-button {
+    background-color: #4e4e4e;
+    color: #fff;
+}
+
+.get-quote-button:hover {
+    background-color: #3a3a3a;
+    color: #fff;
+}
+
+/* Add the following styles for the loading spinner */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.spinner {
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top: 4px solid #61dafb;
+    width: 20px;
+    height: 20px;
+    animation: spin 1s linear infinite;
+    display: inline-block;
+    margin-left: 10px;
+}
+
+/* Update the get-quote-button style */
+.get-quote-button {
+    background-color: #4e4e4e;
+    color: #fff;
+    position: relative;
+}
+
+.get-quote-button .spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+}
