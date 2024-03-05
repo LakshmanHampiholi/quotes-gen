@@ -6,9 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
 const quotes = [
     "Are you depressed? Just don't be sad.",
     "How to stop gambling? Just don't quit.",
-    // ... Add all your quotes here
     "Common sense is like deodorant, those who need it the most never use it.",
-    // ... Add the rest of your quotes
     "Suit up!",
     "It's gonna be legend – wait for it – dary!",
     "When I get sad, I stop being sad and be awesome instead.",
@@ -187,6 +185,8 @@ const quotes = [
     "There is only 2 reasons you date a girl you already dated 1.breast 2.implants"
 ];
 
+let lastRandomIndex = -1; // Initialize with an invalid index
+
 async function getQuote() {
     const quoteContainer = document.getElementById("quote");
     const quoteContent = document.getElementById("quoteContent");
@@ -194,15 +194,24 @@ async function getQuote() {
     const copyButton = document.getElementById("copyButton");
 
     quoteContainer.classList.remove("fade-in");
-    quoteContent.innerHTML = ""; // Clear previous quote
+    quoteContent.innerHTML = ""; 
     quoteAuthor.innerHTML = "";
-    copyButton.style.display = "none"; // Hide the copy button
+    copyButton.style.display = "none"; 
 
     try {
-        const randomIndex = Math.floor(Math.random() * quotes.length);
+        let randomIndex;
+
+        // Generate a new random index that is different from the last one
+        do {
+            randomIndex = Math.floor(Math.random() * quotes.length);
+        } while (randomIndex === lastRandomIndex);
+
+        lastRandomIndex = randomIndex;
+
         const randomQuote = quotes[randomIndex];
 
-        const [content, author = "Anonymous "] = randomQuote.split('|');
+        
+        const [content, author = "Anonymous"] = randomQuote.split('|');
 
         quoteContent.textContent = `"${content}"`;
         quoteAuthor.textContent = `- ${author}`;
@@ -213,17 +222,4 @@ async function getQuote() {
     } finally {
         quoteContainer.classList.add("fade-in");
     }
-}
-
-function copyQuote() {
-    const quoteText = document.getElementById("quote").innerText;
-
-    const textarea = document.createElement("textarea");
-    textarea.value = quoteText;
-    document.body.appendChild(textarea);
-    textarea.select();
-    document.execCommand("copy");
-    document.body.removeChild(textarea);
-
-    alert("Quote copied to clipboard!");
 }
